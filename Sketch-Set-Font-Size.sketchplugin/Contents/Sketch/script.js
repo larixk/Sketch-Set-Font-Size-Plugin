@@ -20,19 +20,15 @@ var onRun = function (context) {
   	}
 
   	if (textLayers.length > 0) {
-
-  		// get first text layer
-  		var firstTextLayer = textLayers[0];
-
-  		// Calculate initial font size
-  		var fontSize = firstTextLayer.fontSize();
-
-  		// Show a dialog, asking for the desired font size
-  		var newFontSize = parseFloat([doc askForUserInput:"Set new font size, yo. 👇" initialValue:fontSize]);
-
       //Loop through all selected text layers and  
   		for (var j = 0; j < textLayers.length; j++) {
   			var textLayer = textLayers[j];
+        
+        // Calculate initial font size
+        var fontSize = textLayer.fontSize();
+
+        // Multiply and round to even number
+        var newFontSize = Math.round(fontSize * 1.1666667 / 2) * 2;
         textLayer.setFontSize(newFontSize);
   		}
 
